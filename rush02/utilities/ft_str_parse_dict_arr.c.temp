@@ -1,0 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_str_parse_dict_arr.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsomsa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/12 04:45:13 by tsomsa            #+#    #+#             */
+/*   Updated: 2021/12/12 18:31:33 by tsomsa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include <stdio.h>
+#include <stdlib.h>
+#include "../headers/type.h"
+#include "../headers/util.h"
+
+# define size 200
+
+int		dict_len(char *row);
+char	**declare_array2d(char **arr, char *str);
+
+void	ft_str_parse_dict_arr(char *str)
+{
+	char	**arr;
+
+	arr = malloc(size * sizeof(char*));
+	arr = declare_array2d(arr, str);
+}
+
+char	**declare_array2d(char **arr, char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (*str)
+	{
+		j = 0;
+		arr[i] = malloc((dict_len(str) + 2) * sizeof(char));
+		while (*str != '\n')
+		{
+			arr[i][j++] = *str;
+			str++;
+		}
+		arr[i][j] = '\n';
+		arr[i][j + 1] = '\0';
+		ft_str_print(arr[i]);
+		str++;
+	}
+	return (arr);
+}
+
+int	dict_len(char *row)
+{
+	int	i;
+
+	i = 0;
+	while (*row != '\n')
+	{
+		i++;
+		row++;
+	}
+	return (i);
+}

@@ -1,0 +1,110 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsomsa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/05 13:47:31 by tsomsa            #+#    #+#             */
+/*   Updated: 2021/12/06 08:11:20 by tsomsa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+
+void	print_board(void);
+int		is_same_row(int row, int nb);
+int		is_same_col(int col, int nb);
+int		is_collect_view_row(int row);
+int		is_collect_view_col(int col);
+void	fill_number(int i, int j);
+int		fillable_number(int i, int j, int k);
+int		is_fillable_last_cell(int i, int j);
+
+int	g_size;
+int	g_is_solve;
+int	*g_views;
+int	**g_square;
+
+int	solve_square_views(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < g_size)
+	{
+		j = 0;
+		while (j < g_size)
+		{
+			if (g_square[i][j] == 0)
+			{
+				fill_number(i, j);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	if (!g_is_solve)
+		print_board();
+	g_is_solve = 1;
+	return (1);
+}
+
+void	fill_number(int i, int j)
+{
+	int	k;
+
+	k = 1;
+	while (k <= g_size)
+	{
+		if (fillable_number(i, j, k))
+		{
+			g_square[i][j] = k;
+			solve_square_views();
+			g_square[i][j] = 0;
+		}
+		k++;
+	}
+}
+
+int	fillable_number(int i, int j, int k)
+{
+	int	is_dup;
+
+	is_dup = is_same_row(i, k) || is_same_col(j, k);
+	if (is_dup)
+		return (0);
+	if (i == g_size - 1 && j != g_size - 1)
+	{
+		g_square[i][j] = k;
+		return (is_collect_view_col(j));
+	}
+	else if (j == g_size - 1)
+	{
+		g_square[i][j] = k;
+		return (is_fillable_last_cell(i, j));
+	}
+	else
+		return (1);
+}
+
+int	is_fillable_last_cell(int i, int j)
+{
+	int	is_fillable;
+
+	if (i == g_size - 1)
+	{
+		if (is_collect_view_col(j) && is_collect_view_row(i))
+			is_fillable = 1;
+		else
+			is_fillable = 0;
+	}
+	else if (is_collect_view_row(i))
+		is_fillable = 1;
+	else
+		is_fillable = 0;
+	g_square[i][j] = 0;
+	return (is_fillable);
+}

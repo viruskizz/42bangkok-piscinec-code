@@ -1,0 +1,5 @@
+Credentials cache: API:9A4F0E11-356A-47CD-B27F-8A26300FB69E
+        Principal: tsomsa@42BANGKOK.COM
+
+  Issued                Expires               Principal
+Nov 23 15:12:47 2021  Nov 24 01:12:42 2021  krbtgt/42BANGKOK.COM@42BANGKOK.COM
