@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../headers/utils.h"
-#include "../headers/types.h"
+#include "utils.h"
+#include "types.h"
 
 int		get_board_width(char *str);
 int		get_header_len(char *str);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
-#include "../headers/constants.h"
+#include "constants.h"
 
 void	str_print_err(char *str)
 {

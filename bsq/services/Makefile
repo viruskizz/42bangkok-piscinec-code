@@ -12,26 +12,41 @@
 
 src = *.c
 
-name = libservices.a
+NAME = libservices.a
+SRCS = find_max_square.c \
+		get_fun_board.c \
+		print_fun_board.c \
+		runner.c \
+		set_board_desc.c \
+		validate_board_data.c \
+		validate_map_header_file.c \
+		utilities/nbr_print.c \
+		utilities/read_file.c \
+		utilities/str_concat.c \
+		utilities/str_copy.c \
+		utilities/str_len.c \
+		utilities/str_number_to_int.c \
+		utilities/str_print_err.c \
+		utilities/str_print.c \
+		utilities/validate_char.c
 
-$(name):$(src) 
-	@gcc -c $(src)
-	@ar rc $(name) *.o
-	@mv $(name) ../lib/my/
-	@rm -f *.o
+OBJS = $(SRCS:%.c=%.o)
 
-all:	$(name)
+all: $(NAME)
+
+$(OBJS): %.o : %.c
+	gcc -I../headers -I../types -c $< -o $@
+
+$(NAME): $(OBJS)
+	ar -csr $(NAME) $(OBJS)
+	@cp $(NAME) ../lib/my/
+
 
 clean:
-	@rm -f *.o
-	@rm -f *~
-	@echo "*.o has clean"
-	@echo ""
+	@rm -f $(OBJS)
 
-fclean:
-	@rm -f ../lib/my/$(name) *.o
-	@echo "*.o has clean"
-	@echo "$(name) has clean"
-	@echo ""
+fclean: clean
+	@rm -f ../lib/my/$(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

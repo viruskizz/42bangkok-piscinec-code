@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_print.c                                        :+:      :+:    :+:   */
+/*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomsa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 10:13:50 by tsomsa            #+#    #+#             */
-/*   Updated: 2021/12/14 13:39:18 by tsomsa           ###   ########.fr       */
+/*   Created: 2021/12/16 03:38:16 by tsomsa            #+#    #+#             */
+/*   Updated: 2021/12/17 19:58:39 by tsomsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/utils.h"
+#ifndef CONSTANTS_H
+# define CONSTANTS_H
 
-void	str_print(char *str)
-{
-	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
-}
+# define C_RED "\033[1;31m"
+# define C_GREEN "\033[1;32m"
+# define C_RESET "\033[m"
+# define BUFF_SIZE 4096
+
+#endif

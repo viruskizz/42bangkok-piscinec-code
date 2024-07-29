@@ -12,26 +12,34 @@
 
 src = *.c
 
-name = libutils.a
+NAME = libutils.a
+SRCS = nbr_print.c \
+		read_file.c \
+		str_concat.c \
+		str_copy.c \
+		str_len.c \
+		str_number_to_int.c \
+		str_print_err.c \
+		str_print.c \
+		validate_char.c
 
-$(name):$(src)
-	@gcc -c $(src)
-	@ar rc $(name) *.o
-	@mv $(name) ../lib/my/
-	@rm -f *.o
+OBJS = $(SRCS:%.c=%.o)
 
-all:	$(name)
+all: $(NAME)
+
+$(OBJS): %.o : %.c
+	gcc -I../headers -I../types -c $< -o $@
+
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+	@cp $(NAME) ../lib/my/
+
 
 clean:
-	@rm -f *.o *.a
-	@rm -f *~
-	@echo "*.o has clean"
-	@echo ""
+	@rm -f $(OBJS)
 
-fclean:
-	@rm -f ../lib/my/$(name) *.o
-	@echo "*.o has clean"
-	@echo "$(name) has clean"
-	@echo ""
+fclean: clean
+	@rm -f ../lib/my/$(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

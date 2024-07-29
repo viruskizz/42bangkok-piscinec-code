@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../headers/utils.h"
-#include "../headers/types.h"
-#include "../headers/services.h"
-#include "../headers/constants.h"
+#include "utils.h"
+#include "types.h"
+#include "services.h"
+#include "constants.h"
 #include <unistd.h>
 
 void	runner(int argc, char *argv[]);

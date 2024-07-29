@@ -9,7 +9,7 @@
 /*   Updated: 2021/12/17 19:38:26 by tsomsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../headers/utils.h"
+#include "utils.h"
 
 int		v_get_header_len(char *str);
 t_file	validate_characters(t_file file, int n);

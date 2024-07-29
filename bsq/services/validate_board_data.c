@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include "../headers/utils.h"
+#include "utils.h"
 
 char	*skip_head(char *str);
 int		count_line(char *str);

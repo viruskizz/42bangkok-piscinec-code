@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include "../headers/utils.h"
-#include "../headers/types.h"
+#include "utils.h"
+#include "types.h"
 
 t_board	set_board_matrix_data(t_board board, char *data);
 
@@ -34,7 +34,7 @@ t_board	set_board_matrix_data(t_board board, char *data)
 	while (*data != '\0')
 	{
 		j = 0;
-		board.data[i] = malloc((board.width) * sizeof(char));
+		board.data[i] = malloc((board.width + 1) * sizeof(char));
 		while (*data != '\n')
 		{
 			board.data[i][j] = *data;

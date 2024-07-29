@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../headers/types.h"
-#include "../headers/utils.h"
-#include "../headers/services.h"
+#include "types.h"
+#include "utils.h"
+#include "services.h"
 
 void	print_point(t_board board, int i, int j);
 

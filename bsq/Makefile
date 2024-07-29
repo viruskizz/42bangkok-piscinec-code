@@ -20,19 +20,23 @@ f_board = fun_board.txt
 x = 20
 y = 20
 dens = 5
-files=main.c services/*.c
-cflags = -Wall -Werror -Wextra
-target = bsq
 
-$(target) : $(objects)
-		@make -C utilities/
-		@make -C services/
-		@gcc -c main.c
-		@gcc $(cflags) -I headers -L lib/my/ -lutils -lservices main.o -o $(target)
-		@rm -f *.o
-		@echo "Compiled file: bsq"
-		@echo ""		
-all: compile
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+NAME = bsq
+INCLUDES = -I./headers -I./types
+LIBS = -L./lib/my -lservices
+SRCS = main.c
+OBJS = $(SRCS:%.c=%.o)
+
+all: $(NAME)
+
+$(NAME): libs
+	$(CC) $(CFLAGS) main.c -g -o $(NAME) $(LIBS)
+
+libs:
+	make -C services/
+
 
 gen_board:
 	@echo "${RED}Generating Fun Board follow by this rules...${RESET}"
@@ -49,12 +53,11 @@ execute:
 .PHONY: clean
 
 clean:
-	@rm -f *.o 
+	@rm -f $(OBJS)
 	@echo "*.o has cleaned"
 
 fclean:
-	@make fclean -C utilities/ 
 	@make fclean -C services/
-	@rm -rf *.o ${target}
-	@echo "*.o has cleaned"
-	@echo "${target} has remove"
+	@rm -rf *.o ${NAME}
+
+re: fclean all

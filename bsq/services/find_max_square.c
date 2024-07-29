@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../headers/types.h"
+#include "types.h"
 
 int		min_size(t_square sq, t_board b);
 int		expand(t_square sq, t_board b);

@@ -12,9 +12,9 @@
 
 #include <stdlib.h>
 #include <fcntl.h>
-#include "../headers/types.h"
-#include "../headers/utils.h"
-#include "../headers/constants.h"
+#include "types.h"
+#include "utils.h"
+#include "constants.h"
 
 int		read_file_size(t_file file);
 t_file	open_file(t_file file);
@@ -31,6 +31,7 @@ t_file	read_file(char *filename, t_file file)
 	close_file(file);
 	file = open_file(file);
 	file.data = malloc((file.size + 1) * sizeof(char));
+	file.data[0] = 0;
 	file = read_buffer(file);
 	file = close_file(file);
 	return (file);
