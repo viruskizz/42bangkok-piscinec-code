@@ -30,12 +30,12 @@ cat $filename
 
 echo "";
 
-gcc -Wall -Wextra -Werror $main services/*.c utilities/*.c -o runner.out
+gcc -Wall -Wextra -Werror $main services/*.c services/utilities/*.c -I./headers -I./types -o runner.out
 
 if [[ -f "runner.out" ]]
 then
-	echo "\033[1;32;47m=== Result ===\033[m";
-	leaks --atExit -- ./runner.out
+	echo -e "\033[1;32;47m=== Result ===\033[m";
+	./runner.out
 	#Clean
 	rm runner.out
 fi
